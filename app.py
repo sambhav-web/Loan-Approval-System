@@ -1,7 +1,13 @@
 import streamlit as st
 import pickle
 import pandas as pd
-with open('pipeline.pkl','rb') as f:
+import os
+
+# Resolve path to pipeline.pkl relative to the directory of this file (app.py)
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+pipeline_path = os.path.join(BASE_DIR, 'pipeline.pkl')
+
+with open(pipeline_path, 'rb') as f:
   model=pickle.load(f)
 
 st.title('LOAN APPROVAL SYSTEM')
@@ -13,6 +19,7 @@ loan_amount=st.number_input('Loan Amount Required',0,value=100000)
 loan_term=st.number_input('Loan Timeperiod (months): ',1,value=4)
 cibil_score=st.number_input('Cibil Score: ',300.0,900.0)
 assets_value=st.number_input('Enter your overall Assets Value: ',0,value=840000)
+
 def predict(d,e,se,i_a,l_a,l_t,c_s,a_v):
   user_input = {
     ' no_of_dependents': [d],
