@@ -22,7 +22,7 @@ def predict(d,e,se,i_a,l_a,l_t,c_s,a_v):
     ' loan_amount': [l_a],
     ' loan_term': [l_t],
     ' cibil_score': [c_s],
-    'assets_value': [a_v]
+    ' assets_value': [a_v]
   }
   datapoint=pd.DataFrame(user_input)
   prediction=model.predict(datapoint)[0]
