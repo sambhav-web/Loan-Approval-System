@@ -1,8 +1,8 @@
 import streamlit as st
-import joblib
+import pickle
 import pandas as pd
-with open('pipeline.joblib','rb') as f:
-  model=joblib.load(f)
+with open('pipeline.pkl','rb') as f:
+  model=pickle.load(f)
 
 st.title('LOAN APPROVAL SYSTEM')
 dependents=st.number_input('Number of Dependents',0,7,2)
@@ -32,4 +32,4 @@ def predict(d,e,se,i_a,l_a,l_t,c_s,a_v):
 
 if st.button('Is Loan Approved?'):
   approval=predict(dependents,education,self_employed,income_annum,loan_amount,loan_term,cibil_score,assets_value)
-  print(f"Your Loan is {approval}")
+  st.write(f"Your Loan is {approval}")
